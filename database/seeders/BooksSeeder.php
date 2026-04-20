@@ -28,7 +28,7 @@ class BooksSeeder extends Seeder
                 'city' => $faker->city(),
                 'cover' => $faker->imageUrl(200, 300, 'books', true),
                 'bookshelf_id' => $faker->randomElement(DB::Table('bookshelves')->pluck('id')->toArray()),
-                'categories_id' => $faker->randomElement(DB::Table('categories')->pluck('id')->toArray()),
+                'category_id' => $faker->randomElement(DB::Table('categories')->pluck('id')->toArray()),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
