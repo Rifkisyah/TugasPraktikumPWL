@@ -43,13 +43,7 @@
                     <x-text-input id="city" type="text" name="city" class="mt-1 block w-full" value="{{ old('city')}}" required/>
                     <x-input-error class="mt-2" :messages="$errors->get('city')" />
                 </div>
-    
-                <div class="max-w-xl">
-                    <x-input-label for="quantity" value="Jumlah Buku"/>
-                    <x-text-input id="quantity" type="number" name="quantity" class="mt-1 block w-full" value="{{ old('quantity')}}" required/>
-                    <x-input-error class="mt-2" :messages="$errors->get('quantity')" />
-                </div>
-    
+                
                 <div class="max-w-xl">
                     <x-input-label for="bookshelf" value="Kategori Rak Buku"/>
                     <x-select-input id="bookshelf" name="bookshelf_id" class="mt-1 block w-full" required>
