@@ -12,35 +12,36 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Add Book') }}
             </h2>
-            <form method="post" action="{{ route('book.store') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
+            <form method="post" action="{{ route('book.update', $book->id) }}" enctype="multipart/form-data" class="mt-6 space-y-6">
                 @csrf
+                @method('patch')
                 <div class="max-w-xl">
                     <x-input-label for="title" value="Judul"/>
-                    <x-text-input id="title" type="text" name="title" class="mt-1 block w-full" value="{{ old('title')}}" required/>
+                    <x-text-input id="title" type="text" name="title" class="mt-1 block w-full" value="{{ old('title', $book->title)}}" required/>
                     <x-input-error class="mt-2" :messages="$errors->get('title')" />
                 </div>
     
                 <div class="max-w-xl">
                     <x-input-label for="author" value="Penulis"/>
-                    <x-text-input id="author" type="text" name="author" class="mt-1 block w-full" value="{{ old('author')}}" required/>
+                    <x-text-input id="author" type="text" name="author" class="mt-1 block w-full" value="{{ old('author', $book->author)}}" required/>
                     <x-input-error class="mt-2" :messages="$errors->get('author')" />
                 </div>
     
                 <div class="max-w-xl">
                     <x-input-label for="year" value="Tahun Terbit"/>
-                    <x-text-input id="year" type="number" name="year" class="mt-1 block w-full" value="{{ old('year')}}" required/>
+                    <x-text-input id="year" type="number" name="year" class="mt-1 block w-full" value="{{ old('year', $book->year)}}" required/>
                     <x-input-error class="mt-2" :messages="$errors->get('year')" />
                 </div>
     
                 <div class="max-w-xl">
                     <x-input-label for="publisher" value="Penerbit"/>
-                    <x-text-input id="publisher" type="text" name="publisher" class="mt-1 block w-full" value="{{ old('publisher')}}" required/>
+                    <x-text-input id="publisher" type="text" name="publisher" class="mt-1 block w-full" value="{{ old('publisher', $book->publisher)}}" required/>
                     <x-input-error class="mt-2" :messages="$errors->get('publisher')" />
                 </div>
     
                 <div class="max-w-xl">
                     <x-input-label for="city" value="Kota Terbit"/>
-                    <x-text-input id="city" type="text" name="city" class="mt-1 block w-full" value="{{ old('city')}}" required/>
+                    <x-text-input id="city" type="text" name="city" class="mt-1 block w-full" value="{{ old('city', $book->city)}}" required/>
                     <x-input-error class="mt-2" :messages="$errors->get('city')" />
                 </div>
                 

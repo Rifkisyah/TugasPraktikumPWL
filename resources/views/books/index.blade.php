@@ -32,10 +32,13 @@
                                 <td>{{ $book->year }}</td>
                                 <td>{{ $book->publisher }}</td>
                                 <td>{{ $book->city }}</td>
-                                <td>{{ $book->cover }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/cover_buku/'. $book->cover) }}" alt="cover" width="100px">
+                                    
+                                </td>
                                 <td>{{ $book->bookshelf->name}}</td>
                                 <td>
-                                    <x-primary-button>Edit</x-primary-button>
+                                    <x-primary-button tag="a" href="{{ route('book.edit', $book->id) }}">Edit</x-primary-button>
                                     <x-danger-button>Delete</x-danger-button>
                                 </td>
                             </tr>
