@@ -32,11 +32,21 @@
                                 <td>{{ $book->year }}</td>
                                 <td>{{ $book->publisher }}</td>
                                 <td>{{ $book->city }}</td>
-                                <td>{{ $book->cover }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/cover_buku/'.$book->cover) }}" alt="Cover" width="100px">
+                                </td>
                                 <td>{{ $book->bookshelf->name}}</td>
                                 <td>
                                     <x-primary-button>Edit</x-primary-button>
-                                    <x-danger-button>Delete</x-danger-button>
+                                    <form action="{{ route('book.destroy', $book) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure?')">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <x-danger-button type="submit">
+                                            Delete
+                                        </x-danger-button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

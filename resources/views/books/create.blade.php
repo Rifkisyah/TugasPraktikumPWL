@@ -12,7 +12,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Add Book') }}
             </h2>
-            <form method="post" action="" enctype="multipart/form-data" class="mt-6 space-y-6">
+            <form method="post" action="{{ route('book.store') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
                 @csrf
                 <div class="max-w-xl">
                     <x-input-label for="title" value="Judul"/>
