@@ -21,9 +21,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
     Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+    Route::get('/book/print', [BookController::class, 'print'])->name('book.print');
     Route::post('/book/store', [BookController::class, 'store'])->name('book.store');
     Route::get('/book/{id}', [BookController::class, 'edit'])->name('book.edit');
-    Route::patch('/book/{id}/update', [BookController::class, 'update'])->name('book.update');
+    Route::patch('/book/{id}', [BookController::class, 'update'])->name('book.update');
 });
 
 

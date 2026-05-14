@@ -9,7 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex justify-end m-4">
-                    <x-primary-button tag="a" href="{{ route('book.create') }}">
+                    <x-primary-button tag="a" href="{{ route('book.print') }}" class="mx-1" target="_blank">
+                        Print Book
+                    </x-primary-button>
+                    <x-primary-button tag="a" href="{{ route('book.create') }}" class="mx-1">
                         Add Book
                     </x-primary-button>
                 </div>
