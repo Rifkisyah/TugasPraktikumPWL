@@ -1,6 +1,7 @@
 @props([
     'name',
     'show' => false,
+    'action' => '#',
     'maxWidth' => '2xl'
 ])
 
@@ -17,6 +18,7 @@ $maxWidth = [
 <div
     x-data="{
         show: @js($show),
+        action: @js($action),
         focusables() {
             // All focusable element types...
             let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
@@ -40,7 +42,6 @@ $maxWidth = [
         }
     })"
     x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
-    x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
@@ -48,6 +49,7 @@ $maxWidth = [
     x-show="show"
     class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
     style="display: {{ $show ? 'block' : 'none' }};"
+    x-on:set-action.window="action = $event.detail"
 >
     <div
         x-show="show"

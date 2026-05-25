@@ -16,6 +16,21 @@ class Book extends Model
         'bookshelf_id',
     ];
 
+    public static function getDataBooks()
+    {
+        $books = Book::all();
+        $books_filters = [];
+        for($i = 0; $i < $books->count(); $i++){
+            $books_filters[$i]['title'] = $books[$i]->title;
+            $books_filters[$i]['author'] = $books[$i]->author;
+            $books_filters[$i]['year'] = $books[$i]->year;
+            $books_filters[$i]['publisher'] = $books[$i]->publisher;
+            $books_filters[$i]['city'] = $books[$i]->city;
+        }
+
+        return $books_filters;
+    }
+
     public function bookshelf()
     {
         return $this->belongsTo(Bookshelf::class, 'bookshelf_id', 'id');
