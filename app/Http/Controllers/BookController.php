@@ -16,10 +16,31 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['books'] = Book::all();
-        return view('books.index', $data);
+        $search = $request->query('search');
+
+        $author = Book::select('author')->distinct()->orderByDesc('author')->pluck('author');
+        $years = Book::select('year')->distinct()->orderByDesc('year')->pluck('year');
+        $publishers = Book::select('publisher')->distinct()->orderByDesc('publisher')->pluck('publisher');
+        $cities = Book::select('city')->distinct()->orderByDesc('city')->pluck('city');
+        $bookshelves = Bookshelf::all();
+
+        $books = Book::when($request->filled('search'), function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        })->when($request->filled('author'), function ($query, $author) {
+            return $query->where('author', 'like', '%' . $author . '%');
+        })->when($request->filled('year'), function ($query, $year) {
+            return $query->where('year', $year);
+        })->when($request->filled('publisher'), function ($query, $publisher) {
+            return $query->where('publisher', 'like', '%' . $publisher . '%');
+        })->when($request->filled('city'), function ($query, $city) {
+            return $query->where('city', 'like', '%' . $city . '%');
+        })->when($request->filled('bookshelf_id'), function ($query, $bookshelf_id) {
+            return $query->where('bookshelf_id', $bookshelf_id);
+        })->latest()->get();
+
+        return view('books.index', compact('books', 'search', 'author', 'years', 'publishers', 'cities', 'bookshelves'));
     }
 
     /**
